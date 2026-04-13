@@ -2,17 +2,17 @@ You are a batch migration worker. Your task is strictly scoped.
 You have NO access to the coordinator's context - everything you need is below.
 
 ## Your worktree path
-/private/tmp/test-print-to-logging/.hermes/worktrees/unit-01
+/private/tmp/test-print-to-logging/.hermes/worktrees/unit-02
 cd into this directory FIRST. Run `pwd` to verify. If you are NOT in your worktree directory - STOP and cd there.
 
 ## Overall goal
 Migrate all print statements to logging across the codebase
 
 ## Your specific task
-Unit 1: auth/login.py - Migrate print statements to logging
+Unit 2: orders/orders.py - Migrate print statements to logging
 
 ## Files to modify
-src/auth/login.py
+src/orders/orders.py
 
 ## What to change
 Replace all `print(...)` statements with appropriate logging calls:
@@ -24,10 +24,10 @@ Replace all `print(...)` statements with appropriate logging calls:
 Example transformation:
 ```python
 # Before:
-print(f"Login attempt for user: {username}")
+print(f"Creating order for user: {user_id}")
 
 # After:
-logger.info(f"Login attempt for user: {username}")
+logger.info(f"Creating order for user: {user_id}")
 ```
 
 ## Codebase conventions
@@ -46,7 +46,7 @@ All 17 tests should pass.
 
 ## Instructions
 Safety rules - follow these before anything else:
-- ☐ **FIRST: cd into your worktree** - run `cd /private/tmp/test-print-to-logging/.hermes/worktrees/unit-01` and verify with `pwd`. If you are NOT in your worktree directory - STOP and cd there. NEVER edit files outside your worktree.
+- ☐ **FIRST: cd into your worktree** - run `cd /private/tmp/test-print-to-logging/.hermes/worktrees/unit-02` and verify with `pwd`. If you are NOT in your worktree directory - STOP and cd there. NEVER edit files outside your worktree.
 - ☐ NEVER delete source files. If migration fails, revert: git checkout -- <file>
 - ☐ Install required dependencies before starting: pip install <package> / npm install. If pip not found - use `source venv/bin/activate` first or `python3 -m pip install`.
 - ☐ Set PYTHONPATH if needed: `export PYTHONPATH=$(pwd)` - required if tests import from `src/` directly.
@@ -58,8 +58,8 @@ After implementing the change:
 2. Re-review - if you made ANY additional changes after step 1, run `/requesting-code-review` again before committing.
 3. Run unit tests - run: cd /private/tmp/test-print-to-logging && python3 -m pytest --tb=short -q. If tests fail due to OTHER units' files not being migrated - that is expected, note it in PR.
 4. Test end-to-end - follow the e2e test recipe above
-5. Commit and push - git add -A && git commit -m "batch: migrate src/auth/login.py print to logging" && git push origin HEAD:batch/unit-01
-6. Create PR - gh pr create --title "Batch: migrate src/auth/login.py print to logging" --body "Replaced all print statements in src/auth/login.py with logging calls following codebase conventions."
-   If PR already exists: gh pr edit <number> --body "Replaced all print statements in src/auth/login.py with logging calls following codebase conventions." and use existing URL
+5. Commit and push - git add -A && git commit -m "batch: migrate src/orders/orders.py print to logging" && git push origin HEAD:batch/unit-02
+6. Create PR - gh pr create --title "Batch: migrate src/orders/orders.py print to logging" --body "Replaced all print statements in src/orders/orders.py with logging calls following codebase conventions."
+   If PR already exists: gh pr edit <number> --body "Replaced all print statements in src/orders/orders.py with logging calls following codebase conventions." and use existing URL
 7. Report - end your response with exactly one line: PR: <url>
    If no PR was created, end with: PR: none - <reason>
