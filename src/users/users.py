@@ -1,23 +1,28 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def create_user(username, email):
-    print(f"Creating user: {username}, email: {email}")
+    logger.info(f"Creating user: {username}, email: {email}")
     if not username or not email:
-        print("ERROR: Missing required fields")
+        logger.error("Missing required fields")
         return None
     user = {"id": 1, "username": username, "email": email}
-    print(f"User created successfully: {user}")
+    logger.info(f"User created successfully: {user}")
     return user
 
 
 def delete_user(user_id):
-    print(f"Deleting user with id: {user_id}")
-    print(f"User {user_id} deleted successfully")
+    logger.info(f"Deleting user with id: {user_id}")
+    logger.info(f"User {user_id} deleted successfully")
     return True
 
 
 def update_user(user_id, data):
-    print(f"Updating user {user_id} with data: {data}")
+    logger.info(f"Updating user {user_id} with data: {data}")
     if not data:
-        print("WARNING: No data provided for update")
+        logger.warning("No data provided for update")
         return False
-    print(f"User {user_id} updated successfully")
+    logger.info(f"User {user_id} updated successfully")
     return True
